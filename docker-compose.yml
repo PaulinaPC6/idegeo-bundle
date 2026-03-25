@@ -504,7 +504,7 @@ services:
 
   # Ollama LLM service
   ollama:
-    profiles: ["ollama"]
+    profiles: ["ia", "ollama"]
     image: ollama/ollama
     build:
       context: ./ia-engine
