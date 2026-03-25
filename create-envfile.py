@@ -95,14 +95,14 @@ def generate_env_file(args):
             True if useoidc else False
         )
 
-        usefeadmin = _jsfile.get("usefeadmin", args.usefeadmin)
-        _vals_to_replace["usefeadmin"] = (
-            True if usefeadmin else False
+        usefrontendadmin = _jsfile.get("usefrontendadmin", args.usefrontendadmin)
+        _vals_to_replace["usefrontendadmin"] = (
+            True if usefrontendadmin else False
         )
 
-        usefeapp = _jsfile.get("usefeapp", args.usefeapp)
-        _vals_to_replace["usefeapp"] = (
-            True if usefeapp else False
+        usefrontendapp = _jsfile.get("usefrontendapp", args.usefrontendapp)
+        _vals_to_replace["usefrontendapp"] = (
+            True if usefrontendapp else False
         )
 
         enableiaproxy = _jsfile.get("enableiaproxy", args.enableiaproxy)
@@ -277,11 +277,11 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--usefeadmin", action="store_true", default=False, help="If provided, bundled frontend admin is used"
+        "--usefrontendadmin", action="store_true", default=False, help="If provided, bundled frontend admin is used"
     )
 
     parser.add_argument(
-        "--usefeapp", action="store_true", default=False, help="If provided, bundled frontend app is used"
+        "--usefrontendapp", action="store_true", default=False, help="If provided, bundled frontend app is used"
     )
     parser.add_argument(
         "--enableiaproxy", action="store_true", default=False, help="If provided, bundled ia proxy is used"

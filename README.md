@@ -11,7 +11,7 @@ git submodule update --remote --merge --recursive
 python3 create-envfile.py --email=info@cesarbenjamin.net --https / --externalhttps \
 --hostname=geosuite.demo.cesarbenjamin.net  
 --oidc_provider_url=https://geosuite.demo.cesarbenjamin.net/iam/realms/sigic
---useoidc --usefeadmin --usefeapp --usellm --homepath=app
+--useoidc --usefrontendadmin --usefrontendapp --usellm --homepath=app
 
 
 docker compose --profile oidc --profile frontend-admin --profile frontend-pub --profile llm down 
