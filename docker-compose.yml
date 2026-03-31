@@ -79,7 +79,7 @@ services:
       - ${ENABLE_ADMIN_PROXY:+./overrides/nginx/z-frontend-admin.conf:/etc/nginx/sites-enabled/z-frontend-admin.conf:ro}
       - ${ENABLE_APP_PROXY:+./overrides/nginx/z-frontend-app.conf:/etc/nginx/sites-enabled/z-frontend-app.conf:ro}
       - ${ENABLE_IA_PROXY:+./overrides/nginx/z-ia-proxy.conf:/etc/nginx/sites-enabled/z-ia-proxy.conf:ro}
-      - ${ENABLE_LEVANTAMIENTO_PROXY:+./overrides/nginx/z-levantamiento-proxy.conf:/etc/nginx/sites-enabled/z-levantamiento-proxy.conf:ro}
+      # - ${ENABLE_LEVANTAMIENTO_PROXY:+./overrides/nginx/z-levantamiento-proxy.conf:/etc/nginx/sites-enabled/z-levantamiento-proxy.conf:ro}
 
     restart: unless-stopped
     networks:
