@@ -513,30 +513,6 @@ services:
         limits:
           memory: 12g
     restart: unless-stopped
-    entrypoint: |
-      sh -eu -c '
-        echo "🔍 Verificando GPU disponible..."
-        if command -v nvidia-smi >/dev/null 2>&1 && nvidia-smi -L >/dev/null 2>&1; then
-          export OLLAMA_USE_GPU=1
-          echo "✅ GPU detectada"
-        else
-          export OLLAMA_USE_GPU=0
-          echo "⚙️ Ejecutando en CPU"
-        fi
-
-        echo "🏁 Iniciando servidor Ollama..."
-        echo "🔥 Precargando modelo ${OLLAMA_MODEL}..."
-
-        echo "🔍 Verificando modelo ${OLLAMA_MODEL}..."
-        if ! ollama list | grep -q "$OLLAMA_MODEL"; then
-          echo "⬇️ Descargando modelo..."
-          ollama pull "$OLLAMA_MODEL"
-        else
-          echo "✅ Modelo ya disponible"
-        fi
-      
-        exec ollama serve
-      '
     networks:
       - sigicnetwork
 
