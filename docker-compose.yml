@@ -406,7 +406,7 @@ services:
   # IA Engine service
   ia-engine:
     profiles: ["ia", "ia-engine"]
-    image: ${COMPOSE_PROJECT_NAME}/ia-engine:latest
+    image: ghcr.io/centrogeo/sigic-ia-engine/sigic-ia-engine:latest
     build:
       context: ./ia-engine
       dockerfile: Dockerfile
@@ -488,7 +488,7 @@ services:
   # Ollama LLM service
   ollama:
     profiles: ["ia", "ollama"]
-    image: ollama/ollama
+    image: ghcr.io/centrogeo/sigic-ia-engine/sigic-ia-ollama:latest
     build:
       context: ./ia-engine
       dockerfile: Dockerfile.ollama
