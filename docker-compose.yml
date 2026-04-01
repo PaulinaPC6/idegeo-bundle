@@ -315,7 +315,7 @@ services:
   # Frontend for admin users
   frontend-admin:
     profiles: ["frontend", "frontend-admin"]
-    image: ${COMPOSE_PROJECT_NAME}/sigic-frontend:latest
+    image: ghcr.io/centrogeo/sigic-nuxt-frontend:latest
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -356,7 +356,7 @@ services:
   # Frontend for end users
   frontend-app:
     profiles: ["frontend", "frontend-app"]
-    image: ${COMPOSE_PROJECT_NAME}/sigic-frontend:latest
+    image: ghcr.io/centrogeo/sigic-nuxt-frontend:latest
     build:
       context: ./frontend
       dockerfile: Dockerfile
