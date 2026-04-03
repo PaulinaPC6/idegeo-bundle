@@ -112,7 +112,7 @@ def generate_env_file(args):
 
         enablelevantamientoproxy = _jsfile.get("enablelevantamientoproxy", args.enablelevantamientoproxy)
         _vals_to_replace["enablelevantamientoproxy"] = (
-            '' if enablelevantamientoproxy else '# '
+            True if enablelevantamientoproxy else False
         )
 
         enableiadb = _jsfile.get("enableiadb", args.enableiadb)
@@ -180,8 +180,10 @@ def generate_env_file(args):
 
     for key, val in _get_vals_to_replace(args).items():
         print(f"{key}: {val}")
-        if key in ["subpath", "homepath", "enablelevantamientoproxy"]:
+        if key in ["subpath", "homepath"]:
             _val = "" if not val else str(val)
+        elif key == "enablelevantamientoproxy":
+            _val = "# " if not val else ""
         else:
             _val = val or "".join(random.choice(_simple_chars) for _ in range(15))
         if isinstance(val, bool) or key in ["email", "http_host", "https_host"]:
@@ -288,7 +290,7 @@ if __name__ == "__main__":
         "--enableiaproxy", action="store_true", default=False, help="If provided, bundled ia proxy is used"
     )
     parser.add_argument(
-        "--enablelevantamientoproxy", action="store_true", default='# ', help="If provided, bundled levantamiento proxy is used"
+        "--enablelevantamientoproxy", action="store_true", default=False, help="If provided, bundled levantamiento proxy is used"
     )
     parser.add_argument(
         "--enableiadb", action="store_true", default=False, help="If provided, bundled ia db is used"
