@@ -312,6 +312,7 @@ services:
     volumes:
       - keycloak_data:/opt/keycloak/data
       - ./overrides/keycloak:/opt/keycloak/data/import
+      - ./scripts/import-keycloak-clients.sh:/scripts/import-keycloak-clients.sh:ro
     networks: [sigicnetwork]
 
   # Frontend for admin users
