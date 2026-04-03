@@ -80,7 +80,7 @@ services:
       - ${ENABLE_ADMIN_PROXY:+./overrides/nginx/z-frontend-admin.conf:/etc/nginx/sites-enabled/z-frontend-admin.conf:ro}
       - ${ENABLE_APP_PROXY:+./overrides/nginx/z-frontend-app.conf:/etc/nginx/sites-enabled/z-frontend-app.conf:ro}
       - ${ENABLE_IA_PROXY:+./overrides/nginx/z-ia-proxy.conf:/etc/nginx/sites-enabled/z-ia-proxy.conf:ro}
-      # - ${ENABLE_LEVANTAMIENTO_PROXY:+./overrides/nginx/z-levantamiento-proxy.conf:/etc/nginx/sites-enabled/z-levantamiento-proxy.conf:ro}
+      - ${ENABLE_LEVANTAMIENTO_PROXY:+./overrides/nginx/z-levantamiento-proxy.conf:/etc/nginx/sites-enabled/z-levantamiento-proxy.conf:ro}
 
     restart: unless-stopped
     networks:
@@ -345,8 +345,8 @@ services:
       NUXT_PUBLIC_ENABLE_CATALOGO_VISTA: true
       NUXT_PUBLIC_ENABLE_CATALOGO_CARGA: true
       NUXT_PUBLIC_ENABLE_CONSULTA: true
-      NUXT_PUBLIC_ENABLE_IAA: true
-      NUXT_PUBLIC_ENABLE_LEVANTAMIENTO: true
+      NUXT_PUBLIC_ENABLE_IAA: ${ENABLE_IA_PROXY:-false}
+      NUXT_PUBLIC_ENABLE_LEVANTAMIENTO: ${ENABLE_LEVANTAMIENTO_PROXY:-false}
       KEYCLOAK_CLIENT_ID: ${ADMIN_KEYCLOAK_CLIENT_ID}
       KEYCLOAK_CLIENT_SECRET: ${ADMIN_KEYCLOAK_CLIENT_SECRET}
       NUXT_AUTH_SECRET: ${ADMIN_NUXT_AUTH_SECRET}
@@ -522,7 +522,7 @@ services:
   # Levantamiento
   levantamiento:
     profiles: [ "levantamiento", "levantamiento-api"]
-    image: ghcr.io/centrogeo/sigic-levantamiento/levantamiento:latest
+    image: ghcr.io/centrogeo/sigic-levantamiento:latest
     build:
       context: ./levantamiento
       dockerfile: Dockerfile
