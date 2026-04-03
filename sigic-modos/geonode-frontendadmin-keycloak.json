@@ -1,0 +1,17 @@
+{
+  "env_type": "prod",
+  "hostname": "sigic.geoint.mx",
+  "email": "sigic@centrogeo.edu.mx",
+  "oidc_provider_url": "https://sigic.geoint.mx/iam/realms/sigic",
+
+  "homepath": "admin",
+
+  "useoidc": true,
+  "usefrontendadmin": true,
+  "usefrontendapp": false,
+
+  "enableiaproxy": false,
+  "enableiadb": false,
+
+  "profiles": ["geonode", "oidc", "frontend-admin"]
+}
