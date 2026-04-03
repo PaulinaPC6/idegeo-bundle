@@ -179,7 +179,7 @@ def generate_env_file(args):
         return {**_jsfile, **_vals_to_replace}
 
     for key, val in _get_vals_to_replace(args).items():
-        if key in ["subpath", "homepath"]:
+        if key in ["subpath", "homepath", "enablelevantamientoproxy"]:
             _val = "" if not val else str(val)
         else:
             _val = val or "".join(random.choice(_simple_chars) for _ in range(15))
