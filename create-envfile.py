@@ -195,6 +195,24 @@ def generate_env_file(args):
         output_env.write(_sample_file)
     logger.info(f".env file created: {dir_path}/.env")
 
+    # 👇 ejecutar generación de JSONs de Keycloak automáticamente
+    try:
+        import subprocess
+
+        script_path = os.path.join(dir_path, "create-keycloak-jsons.py")
+
+        if os.path.isfile(script_path):
+            subprocess.run(
+                [sys.executable, script_path],
+                check=True,
+            )
+            logger.info("Keycloak JSONs generated successfully")
+        else:
+            logger.warning(f"No se encontró create-keycloak-jsons.py en {dir_path}")
+
+    except Exception as e:
+        logger.error(f"Error generating Keycloak JSONs: {e}")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(

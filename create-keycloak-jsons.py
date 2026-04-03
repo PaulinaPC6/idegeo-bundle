@@ -2,6 +2,7 @@
 import json
 import os
 import re
+import sys
 
 
 def parse_env(path):
@@ -39,6 +40,37 @@ def render(content, values):
     return content
 
 
+# 🔥 VALIDACIÓN REAL
+def validate_client(data, path):
+    errors = []
+
+    if not data.get("clientId"):
+        errors.append("clientId faltante")
+
+    if data.get("clientAuthenticatorType") == "client-secret":
+        if not data.get("secret"):
+            errors.append("secret faltante")
+
+    # URLs
+    for field in ["rootUrl", "adminUrl", "baseUrl"]:
+        val = data.get(field)
+        if val is not None:
+            if "{" in val:
+                errors.append(f"{field} contiene placeholders sin resolver")
+            if not val.startswith("http"):
+                errors.append(f"{field} no parece URL válida: {val}")
+
+    # redirectUris
+    for uri in data.get("redirectUris", []):
+        if "{" in uri:
+            errors.append(f"redirectUri sin resolver: {uri}")
+        if not uri.startswith("http"):
+            errors.append(f"redirectUri inválida: {uri}")
+
+    if errors:
+        raise Exception(f"Errores en {path}:\n - " + "\n - ".join(errors))
+
+
 def process_file(path, values):
     with open(path) as f:
         content = f.read()
@@ -46,17 +78,19 @@ def process_file(path, values):
     rendered = render(content, values)
 
     # validar JSON
-    json.loads(rendered)
+    data = json.loads(rendered)
+
+    # validar estructura
+    validate_client(data, path)
 
     out = path.replace(".template", "")
     with open(out, "w") as f:
-        f.write(rendered)
+        json.dump(data, f, indent=2)
 
     print(f"OK: {out}")
 
 
 def main():
-    # 👉 paths correctos según tu repo
     base_dir = os.path.dirname(os.path.realpath(__file__))
     env_path = os.path.join(base_dir, ".env")
     templates_dir = os.path.join(base_dir, "overrides", "keycloak")
