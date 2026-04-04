@@ -107,12 +107,12 @@ def generate_env_file(args):
 
         enableiaproxy = _jsfile.get("enableiaproxy", args.enableiaproxy)
         _vals_to_replace["enableiaproxy"] = (
-            True if enableiaproxy else ''
+            True if enableiaproxy else False
         )
 
         enablelevantamientoproxy = _jsfile.get("enablelevantamientoproxy", args.enablelevantamientoproxy)
         _vals_to_replace["enablelevantamientoproxy"] = (
-            "" if enablelevantamientoproxy else "# "
+            True if enablelevantamientoproxy else False
         )
 
         enableiadb = _jsfile.get("enableiadb", args.enableiadb)

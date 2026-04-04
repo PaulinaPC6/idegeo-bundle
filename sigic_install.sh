@@ -10,7 +10,7 @@ if [ -z "$HTTPS_MODE" ]; then
   exit 1
 fi
 
-FLAVOR_FILE="sigic-modos/$FLAVOR.json"
+FLAVOR_FILE="sigic-mixins/$FLAVOR.json"
 
 if [ ! -f "$FLAVOR_FILE" ]; then
   echo "No existe flavor: $FLAVOR_FILE"
