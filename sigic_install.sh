@@ -103,9 +103,8 @@ if echo "$PROFILES" | grep -q "oidc"; then
   # esperar a que keycloak esté listo
   echo "⏳ Esperando Keycloak..."
 
-  until docker exec keycloak4sigic /opt/keycloak/bin/kcadm.sh get realms > /dev/null 2>&1; do
-    sleep 2
-  done
+  echo "⏳ Esperando Keycloak..."
+  sleep 30
 
   echo "🚀 Ejecutando import de clientes..."
 
