@@ -229,7 +229,7 @@ services:
     networks:
       - sigicnetwork
     environment:
-      ENABLE_IA_DB: True
+      ENABLE_IA_DB: "True"
       DB_NAME: ${IA_DJANGO_DB_NAME}
       DB_USER: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}

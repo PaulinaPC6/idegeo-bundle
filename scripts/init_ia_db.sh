@@ -3,7 +3,7 @@ set -e
 
 echo "🔍 Verificando base de datos IA (iadata)..."
 
-if [ "${ENABLE_IA_DB}" != "True" ]; then
+if [ "${ENABLE_IA_DB,,}" != "true" ]; then
   echo "🟡 ENABLE_IA_DB=False, no se creará la base."
   exit 0
 fi
