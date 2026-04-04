@@ -121,6 +121,8 @@ fi
 if echo "$PROFILES" | grep -q "geonode"; then
   echo "📦 Detectado profile geonode → cargando fixtures Django..."
 
+  python3 create-socialaccount-fixture.py
+
   echo "⏳ Esperando Django..."
   sleep 20
 
