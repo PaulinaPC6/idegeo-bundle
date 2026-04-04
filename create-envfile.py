@@ -107,12 +107,12 @@ def generate_env_file(args):
 
         enableiaproxy = _jsfile.get("enableiaproxy", args.enableiaproxy)
         _vals_to_replace["enableiaproxy"] = (
-            True if enableiaproxy else False
+            True if enableiaproxy else ''
         )
 
         enablelevantamientoproxy = _jsfile.get("enablelevantamientoproxy", args.enablelevantamientoproxy)
         _vals_to_replace["enablelevantamientoproxy"] = (
-            True if enablelevantamientoproxy else False
+            "./overrides/nginx/z-levantamiento-proxy.conf:/etc/nginx/sites-enabled/z-levantamiento-proxy.conf:ro" if enablelevantamientoproxy else ""
         )
 
         enableiadb = _jsfile.get("enableiadb", args.enableiadb)
