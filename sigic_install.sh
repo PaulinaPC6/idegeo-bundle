@@ -102,8 +102,6 @@ if echo "$PROFILES" | grep -q "oidc"; then
 
   # esperar a que keycloak esté listo
   echo "⏳ Esperando Keycloak..."
-
-  echo "⏳ Esperando Keycloak..."
   sleep 30
 
   echo "🚀 Ejecutando import de clientes..."
