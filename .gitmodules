@@ -10,7 +10,7 @@
 
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/CentroGeo/sigic-nuxt-frontend.git
+	url = https://github.com/PaulinaPC6/idegeo-nuxt-frontend.git
 	branch = develop-bundle
 
 [submodule "ia-engine"]

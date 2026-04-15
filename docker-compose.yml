@@ -319,7 +319,7 @@ services:
   # Frontend for admin users
   frontend-admin:
     profiles: ["frontend", "frontend-admin"]
-    image: ghcr.io/centrogeo/sigic-nuxt-frontend:latest
+    image: ghcr.io/centrogeo/idegeo-nuxt-frontend:latest
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -361,7 +361,7 @@ services:
   # Frontend for end users
   frontend-app:
     profiles: ["frontend", "frontend-app"]
-    image: ghcr.io/centrogeo/sigic-nuxt-frontend:latest
+    image: ghcr.io/centrogeo/idegeo-nuxt-frontend:latest
     build:
       context: ./frontend
       dockerfile: Dockerfile
